@@ -1,4 +1,4 @@
-.cache/clangd/index
+.cache/
 .ccls-cache
 build
 result
