@@ -1,13 +1,13 @@
-#include "command-list.h"
 #include "clI11/CLI11.hpp"
+#include "command-list.h"
+
 #include <print>
 
-CommandList::CommandList(std::span<char*> command_args) 
-  : argument_list_(command_args) 
+CommandList::CommandList(std::span<char *> command_args) : argument_list_(command_args)
 {
-  [[maybe_unused]] CLI::Option *opt = application_.add_option("-f,--file", file_arg_, "File name");
+  application_.add_option("-d,--directory", directory_arg_, "Path to directory");
+  application_.add_flag("--human", human_flag_, "Use 1000 instead of 1024 sizing.");
 
   application_.parse(argument_list_.size(), argument_list_.data());
-  std::println("{}", file_arg_);
+  std::println("{}", directory_arg_);
 }
-

@@ -11,5 +11,7 @@ struct CommandList
 
   std::span<char*> argument_list_{};
   CLI::App application_{"finfo"};
-  std::string file_arg_{};
+  
+  std::string directory_arg_{};
+  bool human_flag_{false};
 };
