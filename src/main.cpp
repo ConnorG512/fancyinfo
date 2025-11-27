@@ -27,21 +27,21 @@ auto processCommands(std::span<const char *> passed_arguments) -> std::expected<
       return std::unexpected(std::format("Failed to stat file! Error: {}.", strerror(errno)));
 
     if (stat_struct.st_size > File::Kibibyte{}.division_size)
-    { 
-      File::Kibibyte{}.printSize(stat_struct.st_size); 
-      continue;
+    {
+      File::Kibibyte{}.printSize(stat_struct.st_size);
     }
     else if (stat_struct.st_size > File::Mebibyte{}.division_size)
-    { 
-      File::Mebibyte{}.printSize(stat_struct.st_size); 
-      continue;
+    {
+      File::Mebibyte{}.printSize(stat_struct.st_size);
     }
     else if (stat_struct.st_size > File::Gibibyte{}.division_size)
-    { 
-      File::Gibibyte{}.printSize(stat_struct.st_size); 
-      continue;
+    {
+      File::Gibibyte{}.printSize(stat_struct.st_size);
     }
-    std::println("\tSize:{}bytes", stat_struct.st_size);
+    else
+    {
+      std::println("\tSize:{}bytes", stat_struct.st_size);
+    }
   }
   return std::monostate{};
 }
