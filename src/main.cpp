@@ -46,7 +46,7 @@ auto main(const int argc, const char *argv[]) -> int
 {
   if (const auto result = processCommands(std::span(argv, argc + argv)); !result.has_value())
   {
-    std::println("{}", result.error());
+    std::println(stderr, "{}", result.error());
     return EXIT_FAILURE;
   }
 
