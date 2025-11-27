@@ -2,7 +2,7 @@
 
 #include <print>
 
-namespace File
+namespace File::Sizes
 {
 struct SizePrinter
 {
@@ -39,4 +39,4 @@ struct Gibibyte : public SizePrinter
     std::println("\tSize{:.2}GiB ({}bytes)", file_size, byte_size);
   }
 };
-} // namespace File
+} // namespace File::Sizes

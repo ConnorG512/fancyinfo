@@ -22,17 +22,17 @@ auto processCommands(std::span<const char *> passed_arguments) -> std::expected<
     if (stat(arg, &stat_struct) == -1)
       return std::unexpected(std::format("Failed to stat file! Error: {}.", strerror(errno)));
 
-    if (stat_struct.st_size > File::Kibibyte{}.division_size)
+    if (stat_struct.st_size > File::Sizes::Kibibyte{}.division_size)
     {
-      File::Kibibyte{}.printSize(stat_struct.st_size);
+      File::Sizes::Kibibyte{}.printSize(stat_struct.st_size);
     }
-    else if (stat_struct.st_size > File::Mebibyte{}.division_size)
+    else if (stat_struct.st_size > File::Sizes::Mebibyte{}.division_size)
     {
-      File::Mebibyte{}.printSize(stat_struct.st_size);
+      File::Sizes::Mebibyte{}.printSize(stat_struct.st_size);
     }
-    else if (stat_struct.st_size > File::Gibibyte{}.division_size)
+    else if (stat_struct.st_size > File::Sizes::Gibibyte{}.division_size)
     {
-      File::Gibibyte{}.printSize(stat_struct.st_size);
+      File::Sizes::Gibibyte{}.printSize(stat_struct.st_size);
     }
     else
     {
