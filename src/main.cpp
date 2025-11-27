@@ -43,15 +43,8 @@ auto parseFilePaths(const std::string &file_path) -> std::expected<std::monostat
 
 auto main(int argc, char *argv[]) -> int
 {
-  auto command_list = CommandList(std::span(argv, argc + argv));
-  
-  try
-  {
-    if (const auto result = parseFilePaths(command_list.directory_arg_); !result.has_value())
-    {
-      std::println(stderr, "{}", result.error());
-      return EXIT_FAILURE;
-    }
+  try {
+    auto command_list = CommandList(std::span(argv, argc + argv));
   }
   catch (const CLI::CallForHelp &e)
   {
