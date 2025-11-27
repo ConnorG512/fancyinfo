@@ -12,7 +12,7 @@
 #include <sys/stat.h>
 #include <variant>
 
-auto processCommands(std::span<const char *> passed_arguments) -> std::expected<std::monostate, std::string>
+auto parseFilePaths(std::span<const char *> passed_arguments) -> std::expected<std::monostate, std::string>
 {
   for (const auto &arg : passed_arguments.subspan(1))
   {
@@ -44,7 +44,7 @@ auto processCommands(std::span<const char *> passed_arguments) -> std::expected<
 
 auto main(const int argc, const char *argv[]) -> int
 {
-  if (const auto result = processCommands(std::span(argv, argc + argv)); !result.has_value())
+  if (const auto result = parseFilePaths(std::span(argv, argc + argv)); !result.has_value())
   {
     std::println(stderr, "{}", result.error());
     return EXIT_FAILURE;
