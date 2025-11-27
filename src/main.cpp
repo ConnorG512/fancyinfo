@@ -1,3 +1,5 @@
+#include "file-size-printer.h"
+
 #include <cerrno>
 #include <cstdio>
 #include <cstdlib>
@@ -12,36 +14,6 @@
 
 namespace
 {
-enum class SizeType
-{
-  kibibyte,
-  mebibyte,
-  gibibyte,
-};
-auto printSize = [](const auto byte_size, SizeType size_type)
-{
-  switch (size_type)
-  {
-    case SizeType::kibibyte:
-      {
-        const float file_size{static_cast<float>(byte_size) / 1024.0f};
-        std::println("\tSize: Kibibyte: {:.2}KiB ({}bytes)", file_size, byte_size);
-        break;
-      }
-    case SizeType::mebibyte:
-      {
-        const float file_size{static_cast<float>(byte_size) / (1024.0f * 1024.0f)};
-        std::println("\tSize: Mebibyte: {:.2}MiB ({}bytes)", file_size, byte_size);
-        break;
-      }
-    case SizeType::gibibyte:
-      {
-        const float file_size{static_cast<float>(byte_size) / (1024.0f * 1024.0f * 1024.0f)};
-        std::println("\tSize: Mebibyte: {:.2}MiB ({}bytes)", file_size, byte_size);
-        break;
-      }
-  }
-};
 } // namespace
 
 auto processCommands(std::span<const char *> passed_arguments) -> std::expected<std::monostate, std::string>
@@ -55,16 +27,21 @@ auto processCommands(std::span<const char *> passed_arguments) -> std::expected<
       return std::unexpected(std::format("Failed to stat file! Error: {}.", strerror(errno)));
 
     if (stat_struct.st_size > 1024)
-    { // Kibibyte
-      printSize(stat_struct.st_size, SizeType::kibibyte);
+    { 
+      File::Kibibyte{}.printSize(stat_struct.st_size); 
       continue;
     }
     else if (stat_struct.st_size > 1024 * 1024)
-    { // Mebibyte
-      printSize(stat_struct.st_size, SizeType::mebibyte);
+    { 
+      File::Mebibyte{}.printSize(stat_struct.st_size); 
       continue;
     }
-    std::println("\tSize: {}bytes", stat_struct.st_size);
+    else if (stat_struct.st_size > 1024 * 1024)
+    { 
+      File::Gibibyte{}.printSize(stat_struct.st_size); 
+      continue;
+    }
+    std::println("\tSize:{}bytes", stat_struct.st_size);
   }
   return std::monostate{};
 }
