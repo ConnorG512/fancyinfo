@@ -1,3 +1,4 @@
+#include "command-list.h"
 #include "file-size-printer.h"
 
 #include <cerrno>
@@ -42,13 +43,15 @@ auto parseFilePaths(std::span<const char *> passed_arguments) -> std::expected<s
   return std::monostate{};
 }
 
-auto main(const int argc, const char *argv[]) -> int
+auto main(int argc, char *argv[]) -> int
 {
-  if (const auto result = parseFilePaths(std::span(argv, argc + argv)); !result.has_value())
-  {
-    std::println(stderr, "{}", result.error());
-    return EXIT_FAILURE;
-  }
+  auto command_list = CommandList(std::span(argv, argc+argv));
+
+  //if (const auto result = parseFilePaths(std::span(argv, argc + argv)); !result.has_value())
+  //{
+  //  std::println(stderr, "{}", result.error());
+  //  return EXIT_FAILURE;
+  //}
 
   return EXIT_SUCCESS;
 }
