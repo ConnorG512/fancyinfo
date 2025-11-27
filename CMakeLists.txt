@@ -12,6 +12,12 @@ set(SOURCE_FILES
 
 add_executable(${EXECUTABLE_NAME} ${SOURCE_FILES})
 
+target_compile_options(${EXECUTABLE_NAME} PRIVATE
+  -Wall
+  -Wextra
+  -Wpedantic
+)
+
 target_include_directories(${EXECUTABLE_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/include")
 
 install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION bin)
