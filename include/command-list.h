@@ -6,7 +6,7 @@
 
 struct CommandList   
 {
-  CommandList(std::span<char*> command_args);
+  explicit CommandList(std::span<char*> command_args);
   ~CommandList() = default;
 
   std::span<char*> argument_list_{};
