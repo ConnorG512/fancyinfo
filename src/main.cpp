@@ -12,10 +12,6 @@
 #include <sys/stat.h>
 #include <variant>
 
-namespace
-{
-} // namespace
-
 auto processCommands(std::span<const char *> passed_arguments) -> std::expected<std::monostate, std::string>
 {
   for (const auto &arg : passed_arguments.subspan(1))
