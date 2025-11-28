@@ -10,7 +10,4 @@ CommandList::CommandList(std::span<char *> command_args) : argument_list_(comman
   
   application_.set_help_flag("");
   application_.set_help_all_flag("-h, --help");
-
-  application_.parse(argument_list_.size(), argument_list_.data());
-  std::println("{}", directory_arg_);
 }

@@ -43,21 +43,8 @@ auto parseFilePaths(const std::string &file_path) -> std::expected<std::monostat
 
 auto main(int argc, char *argv[]) -> int
 {
-  try {
-    auto command_list = CommandList(std::span(argv, argc + argv));
-  }
-  catch (const CLI::CallForHelp &e)
-  {
-    std::println("{}", e.what());
-  }
-  catch (const CLI::ParseError &e)
-  {
-    std::println("{}", e.what());
-  }
-  catch (...)
-  {
-    return EXIT_FAILURE;
-  }
+  auto command_list = CommandList(std::span(argv, argc + argv));
+  CLI11_PARSE(command_list.application_, argc, argv);
 
   return EXIT_SUCCESS;
 }
