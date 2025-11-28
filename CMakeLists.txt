@@ -8,6 +8,7 @@ set(EXECUTABLE_NAME finfo)
 
 set(SOURCE_FILES
   src/main.cpp
+  src/command-list.cpp
 )
 
 add_executable(${EXECUTABLE_NAME} ${SOURCE_FILES})

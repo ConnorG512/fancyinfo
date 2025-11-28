@@ -39,4 +39,35 @@ struct Gibibyte : public SizePrinter
     std::println("\tSize{:.2}GiB ({}bytes)", file_size, byte_size);
   }
 };
+
+struct Kilobyte : public SizePrinter
+{
+  static constexpr float division_size{1000.0f};
+
+  void print(const auto byte_size)
+  {
+    const float file_size{static_cast<float>(byte_size) / division_size};
+    std::println("\tSize:{:.2}KB ({}bytes)", file_size, byte_size);
+  }
+};
+
+struct Megabyte : public SizePrinter
+{
+  static constexpr float division_size{1000.0f * 1000.0f};
+  void print(const auto byte_size)
+  {
+    const float file_size{static_cast<float>(byte_size) / division_size};
+    std::println("\tSize:{:.2}MB ({}bytes)", file_size, byte_size);
+  }
+};
+
+struct Gigabyte : public SizePrinter
+{
+  static constexpr float division_size{1000.0f * 1000.0f * 1000.0f};
+  void print(const auto byte_size)
+  {
+    const float file_size{static_cast<float>(byte_size) / division_size};
+    std::println("\tSize{:.2}GB ({}bytes)", file_size, byte_size);
+  }
+};
 } // namespace File::Sizes
