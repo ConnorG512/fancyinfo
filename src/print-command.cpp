@@ -26,7 +26,7 @@
     {
       const double file_size{stat_struct.st_size / type.division_size};
       if (stat_struct.st_size > type.division_size)
-        std::println("\tSize({:.2}): {} | {}(bytes)", file_size, type.name, stat_struct.st_size);
+        std::println("\tSize({:.2f}): {} | {}(bytes)", file_size, type.name, stat_struct.st_size);
       else 
         continue;
     }
