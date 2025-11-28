@@ -9,9 +9,9 @@ struct CommandList
   explicit CommandList(std::span<char*> command_args);
   ~CommandList() = default;
 
-  std::span<char*> argument_list_{};
-  CLI::App application_{"finfo"};
+  std::span<char*> argument_list{};
+  CLI::App application{"finfo"};
   
-  std::string directory_arg_{};
-  bool human_flag_{false};
+  std::string directory_arg{};
+  bool human_flag{false};
 };
