@@ -59,17 +59,17 @@
       return std::unexpected(std::format("Failed to stat file! Error: {}.", strerror(errno)));
 
     std::println("\033[1mFile:\033[0m {}", file);
-    if (stat_struct.st_size > File::Sizes::Kilobyte{}.division_size)
+    if (stat_struct.st_size > File::Sizes::Gigabyte{}.division_size)
     {
-      File::Sizes::Kilobyte{}.printSize(stat_struct.st_size);
+      File::Sizes::Gigabyte{}.printSize(stat_struct.st_size);
     }
     else if (stat_struct.st_size > File::Sizes::Megabyte{}.division_size)
     {
       File::Sizes::Megabyte{}.printSize(stat_struct.st_size);
     }
-    else if (stat_struct.st_size > File::Sizes::Gigabyte{}.division_size)
+    else if (stat_struct.st_size > File::Sizes::Kilobyte{}.division_size)
     {
-      File::Sizes::Gigabyte{}.printSize(stat_struct.st_size);
+      File::Sizes::Kilobyte{}.printSize(stat_struct.st_size);
     }
     else
     {
