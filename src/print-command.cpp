@@ -16,8 +16,8 @@
 {
   std::vector<std::string> file_results{};
 
-  for (const char *path : file_paths.subspan(1) |
-                              std::views::filter([](const char *command) { return std::memcmp(command, "-", 1) != 0; })
+  for (const char *path : file_paths.subspan(1) 
+                              | std::views::filter([](const char *command) { return std::memcmp(command, "-", 1) != 0; })
                               | std::views::filter([](const char *path){ return !std::filesystem::is_directory(path);}))
   {
     file_results.push_back(std::format("\033[1mFile: {}\033[0m", path));
