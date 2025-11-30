@@ -31,5 +31,5 @@
     }
   }
 
-  return std::move(file_results);
+  return file_results;
 }
