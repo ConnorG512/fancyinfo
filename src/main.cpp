@@ -28,6 +28,10 @@ auto main(int argc, char *argv[]) -> int
     {
       std::println("{}", path);
     }
+    if (command_list.count_flag)
+    {
+      std::println("Files found: {}", result->size());
+    }
   }
 
   return EXIT_SUCCESS;
