@@ -13,4 +13,5 @@ struct CommandList
   CLI::App application{"finfo"};
   
   bool human_flag{false};
+  bool count_flag{false};
 };

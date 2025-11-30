@@ -4,6 +4,7 @@
 CommandList::CommandList(std::span<char *> command_args) : argument_list(command_args)
 {
   application.add_flag("--human", human_flag, "Use 1000 instead of 1024 sizing.");
+  application.add_flag("-c,--count", count_flag, "Diplayer num of files found.");
   
   application.set_help_flag("");
   application.set_help_all_flag("-h, --help");
