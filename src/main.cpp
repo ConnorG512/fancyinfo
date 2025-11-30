@@ -21,7 +21,7 @@ auto main(int argc, char *argv[]) -> int
   const auto size_properties = command_list.human_flag == true ? File::ArrayPresets::human : File::ArrayPresets::binary; 
 
   if (const auto result = PrintCommand::CalculateFileSizes(passed_command_args, size_properties); !result.has_value())
-    std::println("{}", result.error());
+    std::println(stderr, "{}", result.error());
   else 
   {
     for(const auto& path : result.value())
